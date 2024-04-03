@@ -29,9 +29,7 @@ export default {
 				// 		enhancements: true
 				// 	}
 				// ]
-				custom: [
-					elrsTheme
-				]
+				custom: [elrsTheme]
 			}
 		})
 	]
