@@ -21,10 +21,10 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Skeleton</strong>
+				<strong class="text-xl gradient-text-tbr font-bold">ELRS Misuse Tracker</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<a
+				<!-- <a
 					class="btn btn-sm variant-ghost-surface"
 					href="https://discord.gg/EXqV7W8MtY"
 					target="_blank"
@@ -47,6 +47,12 @@
 					rel="noreferrer"
 				>
 					GitHub
+				</a> -->
+				<a href="/report" class="btn btn-base variant-filled-primary">
+					Report
+				</a>
+				<a href="/why" class="btn btn-base variant-ghost-secondary">
+					Why?
 				</a>
 			</svelte:fragment>
 		</AppBar>
