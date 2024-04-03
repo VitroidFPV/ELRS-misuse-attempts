@@ -1,6 +1,7 @@
 <script lang="ts">
 	import "../app.postcss";
-	import { AppShell, AppBar } from "@skeletonlabs/skeleton";
+	import { AppShell, AppBar, SlideToggle } from "@skeletonlabs/skeleton";
+	import { showDetails } from "../stores/showDetails";
 
 	// Floating UI for Popups
 	import {
@@ -13,6 +14,7 @@
 	} from "@floating-ui/dom";
 	import { storePopup } from "@skeletonlabs/skeleton";
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
 </script>
 
 <!-- App Shell -->
@@ -21,39 +23,22 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl gradient-text-tbr font-bold">ELRS Misuse Tracker</strong>
+				<strong class="text-xl gradient-text-tbr font-bold"
+					>ELRS Misuse Tracker</strong
+				>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<!-- <a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://discord.gg/EXqV7W8MtY"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Discord
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://twitter.com/SkeletonUI"
-					target="_blank"
-					rel="noreferrer"
-				>
-					Twitter
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://github.com/skeletonlabs/skeleton"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
-				</a> -->
+				<div class="flex gap-4">
+					<SlideToggle name="details" bind:checked={$showDetails} active="bg-primary-500" size="sm"/>
+					<div>
+						Show Details
+					</div>
+				</div>
+				<span class="divider-vertical h-8"></span>
 				<a href="/report" class="btn btn-base variant-filled-primary">
 					Report
 				</a>
-				<a href="/why" class="btn btn-base variant-ghost-secondary">
-					Why?
-				</a>
+				<a href="/why" class="btn btn-base variant-ghost-secondary"> Why? </a>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
