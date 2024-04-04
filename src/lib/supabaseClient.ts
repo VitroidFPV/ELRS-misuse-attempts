@@ -1,9 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
-import { SUPABASE_KEY } from '$env/static/private';
+import {
+	PUBLIC_SUPABASE_URL,
+	PUBLIC_SUPABASE_ANON_KEY
+} from "$env/static/public";
 
-import type { Database } from "./database.types" 
+import type { Database } from "./database.types";
 
 export const supabase = createClient<Database>(
-	"https://cgieiftdrbgfzphkayia.supabase.co",
-	SUPABASE_KEY
+	PUBLIC_SUPABASE_URL,
+	PUBLIC_SUPABASE_ANON_KEY
 );
