@@ -29,10 +29,13 @@
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="flex gap-4">
-					<SlideToggle name="details" bind:checked={$showDetails} active="bg-primary-500" size="sm"/>
-					<div>
-						Show Details
-					</div>
+					<SlideToggle
+						name="details"
+						bind:checked={$showDetails}
+						active="bg-primary-500"
+						size="sm"
+					/>
+					<div>Show Details</div>
 				</div>
 				<span class="divider-vertical h-8"></span>
 				<a href="/report" class="btn btn-base variant-filled-primary">
