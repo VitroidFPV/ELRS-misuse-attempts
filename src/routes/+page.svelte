@@ -65,7 +65,7 @@
 										in:fly={{ y: 20 }}
 										out:fly={{ y: -20 }}
 									>
-										{timeDiffMap.days} days
+										{timeDiffMap.days} day{timeDiffMap.days == 1 ? "" : "s"}
 									</div>
 								{/key}
 							</div>
@@ -120,7 +120,7 @@
 									in:fly={{ y: 20 }}
 									out:fly={{ y: -20 }}
 								>
-									{timeDiffMap.days} days
+									{timeDiffMap.days} day{timeDiffMap.days == 1 ? "" : "s"}
 								</div>
 							{/key}
 						</div>
