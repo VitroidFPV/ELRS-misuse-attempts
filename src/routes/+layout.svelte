@@ -40,12 +40,12 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl gradient-text-tbr font-bold"
-					>ELRS Misuse Tracker</strong
+				<a href="/" class="text-2xl gradient-text-tbr font-bold"
+					>ELRS Misuse Tracker</a
 				>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<div class="flex gap-4">
+				<!-- <div class="flex gap-4">
 					<SlideToggle
 						name="details"
 						bind:checked={$showDetails}
@@ -54,7 +54,7 @@
 					/>
 					<div>Show Details</div>
 				</div>
-				<span class="divider-vertical h-8"></span>
+				<span class="divider-vertical h-8"></span> -->
 				<a href="/report" class="btn btn-base variant-filled-primary">
 					Report
 				</a>

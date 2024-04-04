@@ -5,7 +5,12 @@
 	export let data;
 	// console.log(data);
 
-	let latest = data && data.latest ? data.latest[0].reported_at : null;
+	let latest: any = null;
+	if (data.latest) {
+		latest = data.latest[0].reported_at;
+	}
+	// latest is in ISO format
+	let latestDate = new Date(latest);
 
 	let timeDiffMap = {
 		days: 0,
@@ -16,22 +21,19 @@
 
 	const updateTimeDiff = () => {
 		const current = new Date();
-		const timeDiff = latest
-			? current.getTime() - new Date(latest).getTime()
-			: 0;
+		const timezoneOffset = current.getTimezoneOffset() * 60 * 1000;
 
-		timeDiffMap = {
-			days: Math.floor(timeDiff / (1000 * 60 * 60 * 24)),
-			hours: Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-			minutes: Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)),
-			seconds: Math.floor((timeDiff % (1000 * 60)) / 1000)
-		};
+		const diff = current.getTime() - latestDate.getTime() - timezoneOffset;
+		
+		timeDiffMap.days = Math.floor(diff / (1000 * 60 * 60 * 24));
+		timeDiffMap.hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		timeDiffMap.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+		timeDiffMap.seconds = Math.floor((diff % (1000 * 60)) / 1000);
 	};
 
 	setInterval(updateTimeDiff, 1000);
 	$: if (showDetails) updateTimeDiff();
 
-	// $: console.log(latest);
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center">
@@ -44,7 +46,8 @@
 			<div>been</div>
 			<div class="transition-container">
 				{#if $showDetails && latest}
-					<div
+					<button
+					 	on:click={() => $showDetails = !$showDetails}
 						class="flex justify-between w-[27rem] items-center"
 						in:fly={{ y: 20 }}
 						out:fly={{ y: -20 }}
@@ -97,9 +100,10 @@
 								{/key}
 							</div>
 						</div>
-					</div>
+					</button>
 				{:else}
-					<div
+					<button
+					 	on:click={() => $showDetails = !$showDetails}
 						class="text-primary-500 font-bold gradient-text-tbr w-[27rem] leading-snug"
 						in:fly={{ y: 20 }}
 						out:fly={{ y: -20 }}
@@ -115,7 +119,7 @@
 								</div>
 							{/key}
 						</div>
-					</div>
+					</button>
 				{/if}
 			</div>
 			<div>since</div>
