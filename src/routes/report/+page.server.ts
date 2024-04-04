@@ -38,10 +38,11 @@ export const actions: Actions = {
 		const equipment = req.get("equipment") as string;
 		const comment = req.get("comment") as string;
 		const reported_at = req.get("time") as string;
+		const link = req.get("link") as string;
 
 		const { error } = await supabase
 			.from("attempts")
-			.insert([{ equipment, comment, reported_at }])
+			.insert([{ equipment, comment, reported_at, link }])
 			.select();
 		if (error) {
 			console.error("Error inserting attempt", error);

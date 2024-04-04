@@ -124,6 +124,10 @@
 								</div>
 							</div>
 							<div class="flex flex-col gap-2">
+								<label for="link" class="text-lg">Discord Message Link</label>
+								<input type="text" name="link" id="link" class="input" />
+							</div>
+							<div class="flex flex-col gap-2">
 								<label for="comment" class="text-lg">Comment</label>
 								<input type="text" name="comment" id="comment" class="input" />
 							</div>
