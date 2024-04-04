@@ -29,6 +29,11 @@
 		timeDiffMap.hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 		timeDiffMap.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 		timeDiffMap.seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+		// prevent "-1" flash
+		if (timeDiffMap.days < 0) {
+			timeDiffMap.days = 0;
+		}
 	};
 
 	setInterval(updateTimeDiff, 1000);
