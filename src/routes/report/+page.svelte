@@ -114,6 +114,7 @@
 									bind:value={selectedEquipment}
 									placeholder="Search..."
 									use:popup={popupSettings}
+									autocomplete="off"
 								/>
 								<div data-popup="popupAutocomplete" class="card p-4 w-max">
 									<Autocomplete
@@ -125,11 +126,11 @@
 							</div>
 							<div class="flex flex-col gap-2">
 								<label for="link" class="text-lg">Discord Message Link</label>
-								<input type="text" name="link" id="link" class="input" />
+								<input type="text" name="link" id="link" class="input" autocomplete="off" />
 							</div>
 							<div class="flex flex-col gap-2">
 								<label for="comment" class="text-lg">Comment</label>
-								<input type="text" name="comment" id="comment" class="input" />
+								<input type="text" name="comment" id="comment" class="input" autocomplete="off"/>
 							</div>
 							<!-- 
 								<div class="input-group input-group-divider grid-cols-[1fr_auto]">
