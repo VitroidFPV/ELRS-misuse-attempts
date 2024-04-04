@@ -53,7 +53,7 @@
 				{#if $showDetails && latest}
 					<button
 					 	on:click={() => $showDetails = !$showDetails}
-						class="flex justify-between w-[27rem] items-center"
+						class="flex justify-between w-[32rem] items-center"
 						in:fly={{ y: 20 }}
 						out:fly={{ y: -20 }}
 					>
@@ -109,7 +109,7 @@
 				{:else}
 					<button
 					 	on:click={() => $showDetails = !$showDetails}
-						class="text-primary-500 font-bold gradient-text-tbr w-[27rem] leading-snug"
+						class="text-primary-500 font-bold gradient-text-tbr w-[32rem] leading-snug"
 						in:fly={{ y: 20 }}
 						out:fly={{ y: -20 }}
 					>
