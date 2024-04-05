@@ -45,6 +45,17 @@
 	const url = "https://elrs-misuse-tracker.netlify.app/"
 	const description = `It has been ${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"}, ${timeDiffMap.hours} hour${timeDiffMap.hours == 1 ? "" : "s"}, ${timeDiffMap.minutes} minute${timeDiffMap.minutes == 1 ? "" : "s"}, and ${timeDiffMap.seconds} second${timeDiffMap.seconds == 1 ? "" : "s"} since the last incident.`;
 	const color = "#a7e35f";
+
+	// add current time to URL to prevent caching - show correct time on discord embeds
+	import { goto } from "$app/navigation";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		let date = new Date();
+		if (window.location.pathname === "/") {
+			goto("/?s=" + date.getTime());
+		}
+	});
 </script>
 
 <svelte:head>
