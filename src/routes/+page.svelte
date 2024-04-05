@@ -35,11 +35,32 @@
 			timeDiffMap.days = 0;
 		}
 	};
+	updateTimeDiff();
 
 	setInterval(updateTimeDiff, 1000);
 	$: if (showDetails) updateTimeDiff();
 
+	const title = `${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"} since last incident`;
+	const siteName = "ELRS Misuse Tracker";
+	const url = "https://elrs-misuse-tracker.netlify.app/"
+	const description = `It has been ${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"}, ${timeDiffMap.hours} hour${timeDiffMap.hours == 1 ? "" : "s"}, ${timeDiffMap.minutes} minute${timeDiffMap.minutes == 1 ? "" : "s"}, and ${timeDiffMap.seconds} second${timeDiffMap.seconds == 1 ? "" : "s"} since the last incident.`;
+	const color = "#a7e35f";
 </script>
+
+<svelte:head>
+
+<meta property="og:title" content={title}>
+<meta property="og:site_name" content={siteName}>
+<meta property="og:url" content={url}/>
+<meta property="og:description" content={description}>
+<meta property="og:type" content="website">
+<meta name="theme-color" content={color}>
+
+<!-- regular HTML metadata -->
+<meta name="description" content={description}>
+<title>{title}</title>
+	
+</svelte:head>
 
 <div class="container h-full mx-auto flex justify-center items-center">
 	<div class="text-center">
