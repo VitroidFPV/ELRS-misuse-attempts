@@ -26,8 +26,22 @@
 			<img
 				src="https://c.tenor.com/eZNP54sNYWMAAAAC/tenor.gif"
 				alt="0 Days Since Last Incident GIF"
-				class="rounded-lg w-1/3 mt-4"
+				class="rounded-lg w-1/3 my-4"
 			>
 		</div>
+		<p>
+			If you're reading this as the site was linked in response to your question in the ELRS Discord server,
+			please don't take it personally. It's not the first or last time that a question like this has come up, 
+			but the answer is always the same. While we sympathize with your situation in the terrible conflict, the 
+			developers and support team do not wish to provide any assistance or support for war/illegal efforts.
+			<br><br>
+			Providing support to get frequencies out of the legal range can get the project in legal trouble with 
+			other countries' regulations. Some of this information may be available publicly in other places by 
+			third parties, but we cannot provide it here.
+			<br><br>
+			There is also the possibility of that info going to the wrong hands, the responsibility of which is taken 
+			pretty seriously. You may be able to find official, private channels for this kind of information, but definitely not 
+			in the public community.
+		</p>
 	</div>
 </div>
