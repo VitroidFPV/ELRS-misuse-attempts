@@ -41,8 +41,8 @@
 	$: if (showDetails) updateTimeDiff();
 
 	const title = `${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"} since last incident`;
-	const siteName = "ELRS Misuse Tracker";
-	const url = "https://elrs-misuse-tracker.netlify.app/"
+	const siteName = "ELRS Misuse Attempt Tracker";
+	const url = "https://elrs-misuse-attempt-tracker.netlify.app/"
 	const description = `It has been ${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"}, ${timeDiffMap.hours} hour${timeDiffMap.hours == 1 ? "" : "s"}, ${timeDiffMap.minutes} minute${timeDiffMap.minutes == 1 ? "" : "s"}, and ${timeDiffMap.seconds} second${timeDiffMap.seconds == 1 ? "" : "s"} since the last incident.`;
 	const color = "#a7e35f";
 
