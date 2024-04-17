@@ -41,7 +41,7 @@
 		<AppBar>
 			<svelte:fragment slot="lead">
 				<a href="/" class="text-2xl gradient-text-tbr font-bold"
-					>ELRS Misuse Tracker</a
+					>ELRS Misuse Attempt Tracker</a
 				>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
