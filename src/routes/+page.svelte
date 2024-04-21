@@ -13,40 +13,26 @@
 	let latestDate = new Date(latest);
 
 	let timeDiffMap = {
-		offset: {
-			days: 0,
-			hours: 0,
-			minutes: 0,
-			seconds: 0
-		},
-		base: {
-			days: 0,
-			hours: 0,
-			minutes: 0,
-			seconds: 0
-		}
+		days: 0,
+		hours: 0,
+		minutes: 0,
+		seconds: 0
 	};
 
 	const updateTimeDiff = () => {
 		const current = new Date();
 		const timezoneOffset = current.getTimezoneOffset() * 60 * 1000;
 
-		const diff = current.getTime() - latestDate.getTime();
-		const timezoneDiff = current.getTime() - latestDate.getTime() - timezoneOffset;
+		const diff = current.getTime() - latestDate.getTime() - timezoneOffset;
 		
-		timeDiffMap.offset.days = Math.floor(timezoneDiff / (1000 * 60 * 60 * 24));
-		timeDiffMap.offset.hours = Math.floor((timezoneDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		timeDiffMap.offset.minutes = Math.floor((timezoneDiff % (1000 * 60 * 60)) / (1000 * 60));
-		timeDiffMap.offset.seconds = Math.floor((timezoneDiff % (1000 * 60)) / 1000);
-
-		timeDiffMap.base.days = Math.floor(diff / (1000 * 60 * 60 * 24));
-		timeDiffMap.base.hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		timeDiffMap.base.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-		timeDiffMap.base.seconds = Math.floor((diff % (1000 * 60)) / 1000);
+		timeDiffMap.days = Math.floor(diff / (1000 * 60 * 60 * 24));
+		timeDiffMap.hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		timeDiffMap.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+		timeDiffMap.seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
 		// prevent "-1" flash
-		if (timeDiffMap.offset.days < 0) {
-			timeDiffMap.offset.days = 0;
+		if (timeDiffMap.days < 0) {
+			timeDiffMap.days = 0;
 		}
 	};
 	updateTimeDiff();
@@ -54,10 +40,10 @@
 	setInterval(updateTimeDiff, 1000);
 	$: if (showDetails) updateTimeDiff();
 
-	const title = `${timeDiffMap.base.days} day${timeDiffMap.base.days == 1 ? "" : "s"} since last incident`;
+	const title = `${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"} since last incident`;
 	const siteName = "ELRS Misuse Attempt Tracker";
 	const url = "https://elrs-misuse-attempt-tracker.netlify.app/"
-	const description = `It has been ${timeDiffMap.base.days} day${timeDiffMap.base.days == 1 ? "" : "s"}, ${timeDiffMap.base.hours} hour${timeDiffMap.base.hours == 1 ? "" : "s"}, ${timeDiffMap.base.minutes} minute${timeDiffMap.base.minutes == 1 ? "" : "s"}, and ${timeDiffMap.base.seconds} second${timeDiffMap.base.seconds == 1 ? "" : "s"} since the last incident.`;
+	const description = `It has been ${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"}, ${timeDiffMap.hours} hour${timeDiffMap.hours == 1 ? "" : "s"}, ${timeDiffMap.minutes} minute${timeDiffMap.minutes == 1 ? "" : "s"}, and ${timeDiffMap.seconds} second${timeDiffMap.seconds == 1 ? "" : "s"} since the last incident.`;
 	const color = "#a7e35f";
 
 	// add current time to URL to prevent caching - show correct time on discord embeds
@@ -105,48 +91,48 @@
 					>
 						<div class="flex flex-col items-start justify-between w-1/2">
 							<div class="transition-container w-full">
-								{#key timeDiffMap.offset.days}
+								{#key timeDiffMap.days}
 									<div
 										class="text-primary-500 font-bold gradient-text-tbr text-4xl"
 										in:fly={{ y: 20 }}
 										out:fly={{ y: -20 }}
 									>
-										{timeDiffMap.offset.days} day{timeDiffMap.offset.days == 1 ? "" : "s"}
+										{timeDiffMap.days} day{timeDiffMap.days == 1 ? "" : "s"}
 									</div>
 								{/key}
 							</div>
 							<div class="transition-container w-full">
-								{#key timeDiffMap.offset.minutes}
+								{#key timeDiffMap.minutes}
 									<div
 										class="text-primary-500 font-bold gradient-text-tbr text-4xl"
 										in:fly={{ y: 20 }}
 										out:fly={{ y: -20 }}
 									>
-										{timeDiffMap.offset.minutes} minutes
+										{timeDiffMap.minutes} minutes
 									</div>
 								{/key}
 							</div>
 						</div>
 						<div class="flex flex-col items-start w-1/2">
 							<div class="transition-container w-full">
-								{#key timeDiffMap.offset.hours}
+								{#key timeDiffMap.hours}
 									<div
 										class="text-primary-500 font-bold gradient-text-tbr text-4xl"
 										in:fly={{ y: 20 }}
 										out:fly={{ y: -20 }}
 									>
-										{timeDiffMap.offset.hours} hours
+										{timeDiffMap.hours} hours
 									</div>
 								{/key}
 							</div>
 							<div class="transition-container w-full">
-								{#key timeDiffMap.offset.seconds}
+								{#key timeDiffMap.seconds}
 									<div
 										class="text-primary-500 font-bold gradient-text-tbr text-4xl"
 										in:fly={{ y: 20 }}
 										out:fly={{ y: -20 }}
 									>
-										{timeDiffMap.offset.seconds} seconds
+										{timeDiffMap.seconds} seconds
 									</div>
 								{/key}
 							</div>
@@ -160,13 +146,13 @@
 						out:fly={{ y: -20 }}
 					>
 						<div class="transition-container w-full">
-							{#key timeDiffMap.offset.days}
+							{#key timeDiffMap.days}
 								<div
 									class="text-primary-500 font-bold gradient-text-tbr"
 									in:fly={{ y: 20 }}
 									out:fly={{ y: -20 }}
 								>
-									{timeDiffMap.offset.days} day{timeDiffMap.offset.days == 1 ? "" : "s"}
+									{timeDiffMap.days} day{timeDiffMap.days == 1 ? "" : "s"}
 								</div>
 							{/key}
 						</div>
