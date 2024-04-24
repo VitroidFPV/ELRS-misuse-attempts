@@ -3,14 +3,14 @@
 	import { fly } from "svelte/transition";
 
 	export let data;
+	// console.log(data);
 
 	let latest: any = null;
 	if (data.latest) {
 		latest = data.latest[0].reported_at;
 	}
-	// Convert latest to a Date object and adjust for local timezone to treat as UTC
+	// latest is in ISO format
 	let latestDate = new Date(latest);
-	latestDate = new Date(latestDate.getTime() + latestDate.getTimezoneOffset() * 60000);
 
 	let timeDiffMap = {
 		days: 0,
@@ -20,17 +20,17 @@
 	};
 
 	const updateTimeDiff = () => {
-		// Use the current time in UTC for comparison
 		const current = new Date();
-		const currentUTC = new Date(Date.UTC(current.getUTCFullYear(), current.getUTCMonth(), current.getUTCDate(), current.getUTCHours(), current.getUTCMinutes(), current.getUTCSeconds()));
+		const timezoneOffset = current.getTimezoneOffset() * 60 * 1000;
 
-		const diff = currentUTC.getTime() - latestDate.getTime();
+		const diff = current.getTime() - latestDate.getTime() - timezoneOffset;
 		
 		timeDiffMap.days = Math.floor(diff / (1000 * 60 * 60 * 24));
 		timeDiffMap.hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 		timeDiffMap.minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 		timeDiffMap.seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
+		// prevent "-1" flash
 		if (timeDiffMap.days < 0) {
 			timeDiffMap.days = 0;
 		}
@@ -46,6 +46,7 @@
 	const description = `It has been ${timeDiffMap.days} day${timeDiffMap.days == 1 ? "" : "s"}, ${timeDiffMap.hours} hour${timeDiffMap.hours == 1 ? "" : "s"}, ${timeDiffMap.minutes} minute${timeDiffMap.minutes == 1 ? "" : "s"}, and ${timeDiffMap.seconds} second${timeDiffMap.seconds == 1 ? "" : "s"} since the last incident.`;
 	const color = "#a7e35f";
 
+	// add current time to URL to prevent caching - show correct time on discord embeds
 	import { goto } from "$app/navigation";
 	import { onMount } from "svelte";
 
